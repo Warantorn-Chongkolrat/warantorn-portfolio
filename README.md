@@ -1,12 +1,12 @@
-# Portfolio Template
+# Warantorn Chongkolrat — Portfolio
 
-A modern, responsive portfolio template built with React and Vite.
+My personal portfolio site, built with React and Vite.
 
 ## Features
 
 - ⚡️ Powered by React + Vite for lightning-fast development
-- 💅 Modern and responsive design
-- 🎨 Customizable and maintainable codebase
+- 💅 Modern, responsive design with light/dark mode
+- 🖼️ Autoplay photo carousels for projects, activities, and certifications
 - 📱 Mobile-first approach
 - 🔥 Hot Module Replacement (HMR)
 - 🛠️ ESLint configuration for code quality
@@ -22,8 +22,8 @@ A modern, responsive portfolio template built with React and Vite.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/chornthorn/portfolio-template.git
-cd portfolio-template
+git clone https://github.com/Warantorn-Chongkolrat/warantorn-portfolio.git
+cd warantorn-portfolio
 ```
 
 2. Install dependencies
@@ -52,6 +52,8 @@ yarn dev
 - [React](https://reactjs.org/) - UI Library
 - [Vite](https://vitejs.dev/) - Build Tool
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) - Official React Plugin for Vite
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Framer Motion](https://www.framer.com/motion/) / [react-spring](https://www.react-spring.dev/) - Animation
 - [ESLint](https://eslint.org/) - Code Linting
 
 ## License
@@ -60,18 +62,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 
-Thorn Chorn
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/your-username/portfolio-template/issues).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
----
-
-Made with ❤️ by Thorn Chorn
-
-
+Warantorn Chongkolrat
