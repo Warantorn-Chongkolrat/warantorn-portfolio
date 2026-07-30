@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
+import Activities from "./components/Activities";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CustomCursor from "./components/CustomCursor";
 import AnimatedLines from "./components/AnimatedLines";
 import HeroV3 from "./components/HeroV3.jsx";
 
@@ -28,12 +27,12 @@ function App() {
   }, []);
 
   return (
-    <div className="text-white">
-      <CustomCursor />
+    <div className="bg-white text-gray-900 dark:bg-black dark:text-white transition-colors duration-300">
       <Header />
       <HeroV3 />
       <About />
       <Skills />
+      <Activities />
       <Projects />
       <Contact />
       <Footer />

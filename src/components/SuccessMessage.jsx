@@ -24,8 +24,8 @@ const SuccessMessage = ({ successSpringProps }) => (
 
     {/* Success Text */}
     <div className="text-center">
-      <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-      <p className="text-gray-400">
+      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Message Sent!</h3>
+      <p className="text-gray-500 dark:text-gray-400">
         Thank you for reaching out. I'll get back to you soon!
       </p>
     </div>

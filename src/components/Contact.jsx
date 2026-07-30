@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
@@ -70,13 +70,9 @@ const Contact = () => {
         >
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Get In Touch
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? Feel free to reach
-              out!
-            </p>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full" />
           </div>
 
@@ -85,7 +81,7 @@ const Contact = () => {
             <ContactInfo />
 
             {/* Contact Form / Success Message */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500 relative min-h-[400px]">
+            <div className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-black/10 dark:border-white/10 hover:border-purple-500/30 transition-all duration-500 relative min-h-[400px]">
               {isSubmitted ? (
                 <SuccessMessage successSpringProps={successSpringProps} />
               ) : (
@@ -120,7 +116,7 @@ const Contact = () => {
                   />
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
                   >
                     Send Message
                   </button>

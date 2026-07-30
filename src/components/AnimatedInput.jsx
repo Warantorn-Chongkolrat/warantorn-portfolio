@@ -14,7 +14,7 @@ const AnimatedInput = ({ label, type, name, value, onChange, placeholder }) => {
 
   return (
     <animated.div style={springProps} className="space-y-2">
-      <label className="block text-sm font-medium text-gray-400 transition-colors duration-300">
+      <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 transition-colors duration-300">
         {label}
       </label>
       {type === "textarea" ? (
@@ -25,7 +25,7 @@ const AnimatedInput = ({ label, type, name, value, onChange, placeholder }) => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           rows={6}
-          className="w-full px-4 py-3 bg-white/5 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 resize-none hover:bg-white/[0.07]"
+          className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 resize-none hover:bg-black/[0.07] dark:hover:bg-white/[0.07]"
           placeholder={placeholder}
         />
       ) : (
@@ -36,7 +36,7 @@ const AnimatedInput = ({ label, type, name, value, onChange, placeholder }) => {
           onChange={onChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className="w-full px-4 py-3 bg-white/5 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 hover:bg-white/[0.07]"
+          className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 hover:bg-black/[0.07] dark:hover:bg-white/[0.07]"
           placeholder={placeholder}
         />
       )}

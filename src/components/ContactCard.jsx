@@ -18,23 +18,25 @@ const ContactCard = ({ icon, title, value, link }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex-shrink-0 w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center text-blue-400 group-hover:bg-white/10 group-hover:text-blue-300 transition-all duration-300">
+      <div className="flex-shrink-0 w-12 h-12 bg-black/5 dark:bg-white/5 rounded-lg flex items-center justify-center text-blue-500 dark:text-blue-400 group-hover:bg-black/10 dark:group-hover:bg-white/10 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-all duration-300">
         {icon}
       </div>
       <div>
-        <h4 className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+        <h4 className="text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
           {title}
         </h4>
         {link ? (
           <a
             href={link}
-            className="text-white hover:text-blue-400 transition-colors duration-300 relative inline-block group-hover:translate-x-1 transform transition-transform"
+            target={link.startsWith("http") ? "_blank" : undefined}
+            rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="text-gray-900 dark:text-white hover:text-blue-400 transition-colors duration-300 relative inline-block group-hover:translate-x-1 transform transition-transform"
           >
             {value}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
           </a>
         ) : (
-          <p className="text-white">{value}</p>
+          <p className="text-gray-900 dark:text-white">{value}</p>
         )}
       </div>
     </animated.div>

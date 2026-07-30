@@ -2,72 +2,17 @@ import { motion } from "motion/react";
 import { useRef } from "react";
 import AnimatedLines from "./AnimatedLines.jsx";
 
-const StatsCard = ({ stat, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.1, y: -10 }}
-      className="text-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300"
-    >
-      <div className="text-2xl font-bold text-blue-400">{stat.value}</div>
-      <div className="text-sm text-gray-400">{stat.label}</div>
-    </motion.div>
-  );
-};
-
-const InterestCard = ({ interest, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="group p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors duration-300"
-    >
-      <div className="flex items-start space-x-4">
-        <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
-          {interest.icon}
-        </span>
-        <div>
-          <h4 className="text-white font-medium mb-1 group-hover:text-blue-400 transition-colors duration-300">
-            {interest.name}
-          </h4>
-          <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
-            {interest.desc}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const About = () => {
-  const stats = [
-    { label: "Years Experience", value: "5+" },
-    { label: "Projects Completed", value: "50+" },
-    { label: "Technologies", value: "15+" },
-    { label: "Happy Clients", value: "30+" },
-  ];
-
-  const interests = [
-    {
-      icon: "🚀",
-      name: "Innovation",
-      desc: "Exploring cutting-edge technologies",
-    },
-    { icon: "💡", name: "Problem Solving", desc: "Finding elegant solutions" },
-    { icon: "🎨", name: "Design", desc: "Creating beautiful interfaces" },
-    { icon: "🔄", name: "Agile", desc: "Iterative development" },
-    { icon: "🌐", name: "Web Performance", desc: "Optimizing for speed and efficiency" },
-    { icon: "🛡️", name: "Security", desc: "Building secure applications" }
+  const languages = [
+    { code: "th", name: "Thai", desc: "Native Speaker" },
+    { code: "gb", name: "English", desc: "Fluent Speaker (TOEIC 990/990)" },
+    { code: "cn", name: "Mandarin", desc: "Beginner / Conversational" },
   ];
 
   return (
     <section
       id="about"
-      className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
@@ -84,7 +29,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               About Me
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
@@ -99,48 +44,89 @@ const About = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-blue-500/30 transition-all duration-300"
+                className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-black/10 dark:border-white/10 hover:border-blue-500/30 transition-all duration-300"
               >
-                <h3 className="text-2xl font-semibold text-white mb-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                   My Journey
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  As a passionate Software Developer based in Cambodia, I
-                  specialize in building exceptional digital experiences. With a
-                  strong foundation in full-stack development and a keen eye for
-                  design, I create solutions that are not only functional but
-                  also intuitive and user-friendly.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  I&apos;m a fourth year CS Major at Bangkok University who thrives
+                  at the intersection of system design, technical leadership,
+                  and software engineering. My core strength lies in taking
+                  user requirements and translating them into clear system
+                  designs in order to facilitate a shared vision between team
+                  members and clients.
                 </p>
-                <div className="mt-6 grid grid-cols-2 gap-4">
-                  {stats.map((stat, index) => (
-                    <StatsCard key={stat.label} stat={stat} index={index} />
-                  ))}
-                </div>
+                <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                  In my university projects, I regularly step up as the
+                  System Architect and Project Manager, keeping teams aligned
+                  and on schedule while actively contributing to front-end
+                  and back-end code. I&apos;m looking for Internships and
+                  Cooperative Education opportunities to apply my skillset to
+                  real-world use and learn from industry professionals.
+                </p>
               </motion.div>
             </div>
 
-            {/* Right Column - Interests & Skills */}
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-300"
-              >
-                <h3 className="text-2xl font-semibold text-white mb-6">
-                  What Drives Me
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {interests.map((interest, index) => (
-                    <InterestCard
-                      key={interest.name}
-                      interest={interest}
-                      index={index}
-                    />
-                  ))}
+            {/* Right Column - Education, Location & Languages */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-black/10 dark:border-white/10 hover:border-purple-500/30 transition-all duration-300"
+            >
+              <div className="grid grid-cols-1 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    Education
+                  </h4>
+                  <div className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <span className="text-lg leading-none shrink-0">🎓</span>
+                    <span>
+                      Bachelor of Computer Science, Bangkok University (Class
+                      of 2027) · 2023 - present
+                    </span>
+                  </div>
                 </div>
-              </motion.div>
-            </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    Location
+                  </h4>
+                  <div className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <span className="text-lg leading-none shrink-0">📍</span>
+                    <span>Bangkok, Thailand</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    Languages
+                  </h4>
+                  <div className="space-y-2">
+                    {languages.map((language) => (
+                      <div
+                        key={language.name}
+                        className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+                      >
+                        <img
+                          src={`https://flagcdn.com/${language.code}.svg`}
+                          alt={`${language.name} flag`}
+                          className="w-6 h-4 mt-0.5 object-cover rounded-sm shrink-0 shadow-sm"
+                        />
+                        <span>
+                          <span className="text-gray-900 dark:text-white font-medium">
+                            {language.name}
+                          </span>{" "}
+                          — {language.desc}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

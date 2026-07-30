@@ -1,8 +1,8 @@
 import { useSpring, animated, config } from "@react-spring/web";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const SkillCard = ({ skill, index }) => {
+const SkillCard = ({ category, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.3,
@@ -30,34 +30,19 @@ const SkillCard = ({ skill, index }) => {
     <animated.div
       ref={ref}
       style={{ ...springProps, ...hoverProps }}
-      className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-blue-500/50 transition-colors duration-500"
+      className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-black/10 dark:border-white/10 hover:border-blue-500/50 transition-colors duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-300">
-            {skill.name}
-          </h3>
-          <span className="text-blue-400">{skill.level}%</span>
-        </div>
-        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-          <animated.div
-            style={{
-              width: inView ? `${skill.level}%` : "0%",
-              background: isHovered
-                ? "linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%)"
-                : "linear-gradient(90deg, #60A5FA 0%, #A78BFA 100%)",
-              transition: "all 0.3s ease",
-            }}
-            className="h-full rounded-full"
-          />
-        </div>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-400 transition-colors duration-300">
+          {category.name}
+        </h3>
         <div className="flex flex-wrap gap-2">
-          {skill.tags.map((tag, i) => (
+          {category.tags.map((tag, i) => (
             <span
               key={i}
-              className="px-3 py-1 text-xs bg-white/5 text-gray-300 rounded-full hover:bg-white/10 hover:text-blue-400 transition-all duration-300 cursor-default"
+              className="px-3 py-1 text-xs bg-black/5 dark:bg-white/5 text-gray-600 dark:text-gray-300 rounded-full hover:bg-black/10 dark:hover:bg-white/10 hover:text-blue-400 transition-all duration-300 cursor-default"
             >
               {tag}
             </span>
@@ -68,28 +53,46 @@ const SkillCard = ({ skill, index }) => {
   );
 };
 
-const TechIcon = ({ tech, index }) => {
+const SoftSkillCard = ({ skill, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
+  const springProps = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(50px)",
+    delay: index * 100,
+    config: config.gentle,
+  });
 
   const hoverProps = useSpring({
     transform: isHovered
-      ? "scale(1.1) translateY(-10px)"
+      ? "scale(1.03) translateY(-5px)"
       : "scale(1) translateY(0px)",
-    rotateZ: isHovered ? "10deg" : "0deg",
-    config: { tension: 300, friction: 10 },
+    boxShadow: isHovered
+      ? "0 20px 25px -5px rgba(0, 0, 0, 0.2)"
+      : "0 0 0 0 rgba(0, 0, 0, 0)",
+    config: { tension: 300, friction: 20 },
   });
 
   return (
     <animated.div
-      style={hoverProps}
-      className="group flex flex-col items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-500"
+      ref={ref}
+      style={{ ...springProps, ...hoverProps }}
+      className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-black/10 dark:border-white/10 hover:border-purple-500/50 transition-colors duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className="text-3xl mb-2">{tech.icon}</span>
-      <span className="text-gray-300 text-sm group-hover:text-blue-400 transition-colors duration-300">
-        {tech.name}
-      </span>
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-300">
+          {skill.name}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+          {skill.description}
+        </p>
+      </div>
     </animated.div>
   );
 };
@@ -106,42 +109,87 @@ const Skills = () => {
     config: config.gentle,
   });
 
-  const skills = [
+  const technicalSkills = [
     {
-      name: "Frontend Development",
-      level: 90,
-      tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"],
+      name: "System and Product Design",
+      tags: [
+        "System Architecture",
+        "ERD Design",
+        "Data Modeling",
+        "Use Case Diagrams",
+        "User Flow Design",
+        "UI/UX Wireframing",
+      ],
     },
     {
-      name: "Backend Development",
-      level: 85,
-      tags: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
+      name: "Project Management",
+      tags: [
+        "SDLC",
+        "Agile / Scrum",
+        "Kanban",
+        "Jira",
+        "Gantt Charts",
+        "Sprint Planning & Tracking",
+        "Project Charters",
+        "Requirements Scoping",
+      ],
     },
     {
-      name: "UI/UX Design",
-      level: 80,
-      tags: ["Figma", "Adobe XD", "Responsive Design", "Prototyping"],
+      name: "Programming Languages",
+      tags: ["Python", "Java", "C#", "C++", "SQL", "HTML/CSS", "TypeScript"],
     },
     {
-      name: "DevOps & Tools",
-      level: 75,
-      tags: ["Git", "Docker", "AWS", "CI/CD", "Linux"],
+      name: "Frameworks and Libraries",
+      tags: ["Next.js", "React", ".NET MAUI (XAML)", "Node.js", "Tailwind CSS"],
+    },
+    {
+      name: "Tools & Technologies",
+      tags: ["Git", "GitHub", "Figma", "VS Code", "Visual Studio", "Vercel"],
     },
   ];
 
-  const technologies = [
-    { name: "React", icon: "⚛️" },
-    { name: "Node.js", icon: "🟢" },
-    { name: "TypeScript", icon: "📘" },
-    { name: "MongoDB", icon: "🍃" },
-    { name: "AWS", icon: "☁️" },
-    { name: "Docker", icon: "🐳" },
+  const softSkills = [
+    {
+      name: "Creativity & Innovation",
+      description:
+        "Coming up with ideas that are innovative, practical and fulfill the requirements needed.",
+    },
+    {
+      name: "Communication",
+      description:
+        "Bridging communication between technical team members and non-technical stakeholders.",
+    },
+    {
+      name: "Stakeholder Engagement",
+      description:
+        "Keep clients in the loop about the project progression with consistent communication.",
+    },
+    {
+      name: "Leadership & Ownership",
+      description:
+        "Natural leader, helps the team keep track of project delivery schedules, due dates, and goal alignment within a project.",
+    },
+    {
+      name: "Team Work",
+      description:
+        "Thrives within a team environment with differing personality and culture.",
+    },
+    {
+      name: "Problem Solving",
+      description:
+        "Breaking complex requirements into structured, actionable tasks using computational thinking.",
+    },
+    {
+      name: "Public Speaking",
+      description:
+        "Able to work in client facing roles and perform tasks like pitching or presentations in front of an audience.",
+    },
   ];
 
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
@@ -156,39 +204,42 @@ const Skills = () => {
             style={titleSpring}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Skills & Expertise
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </animated.div>
 
-          {/* Main Skills Grid */}
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
-            {skills.map((skill, index) => (
-              <SkillCard key={skill.name} skill={skill} index={index} />
-            ))}
-          </div>
-
-          {/* Technologies Section */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500">
-            <h3 className="text-2xl font-semibold text-white mb-8 text-center">
-              Technologies I Work With
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {technologies.map((tech, index) => (
-                <TechIcon key={tech.name} tech={tech} index={index} />
+          {/* Technical Skills */}
+          <div className="mb-16">
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                Technical Skills
+              </h3>
+              <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {technicalSkills.map((category, index) => (
+                <SkillCard key={category.name} category={category} index={index} />
               ))}
             </div>
           </div>
 
-          {/* Learning Section */}
-          <div className="mt-16 text-center">
-            <p className="text-gray-400 max-w-2xl mx-auto hover:text-gray-300 transition-colors duration-300">
-              Always learning and exploring new technologies to stay at the
-              forefront of web development. Currently exploring Web3
-              technologies and AI integration in web applications.
-            </p>
+          {/* Soft Skills */}
+          <div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                Soft Skills
+              </h3>
+              <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {softSkills.map((skill, index) => (
+                <SoftSkillCard key={skill.name} skill={skill} index={index} />
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
     </section>
