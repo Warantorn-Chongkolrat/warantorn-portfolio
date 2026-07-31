@@ -1,6 +1,6 @@
 import { useSpring, animated, config } from "@react-spring/web";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ImageCarousel from "./ImageCarousel.jsx";
 
 import hackathon2026_1 from "../assets/activities/hackathon-2026/hackathon-2026-1.jpg";
@@ -213,7 +213,6 @@ const Activities = () => {
   });
 
   const carouselRef = useRef(null);
-  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
 
   const scrollCarousel = (direction) => {
     if (carouselRef.current) {
@@ -223,28 +222,6 @@ const Activities = () => {
       });
     }
   };
-
-  // Slowly auto-scroll the certifications carousel, looping back to the
-  // start once it reaches the end. Pauses while the user is interacting.
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el || isCarouselPaused) return undefined;
-
-    let rafId;
-    const speed = 0.4; // pixels per frame
-
-    const step = () => {
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
-        el.scrollLeft = 0;
-      } else {
-        el.scrollLeft += speed;
-      }
-      rafId = requestAnimationFrame(step);
-    };
-
-    rafId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafId);
-  }, [isCarouselPaused]);
 
   const certifications = [
     {
@@ -408,13 +385,7 @@ const Activities = () => {
               </h3>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
             </div>
-            <div
-              className="relative"
-              onMouseEnter={() => setIsCarouselPaused(true)}
-              onMouseLeave={() => setIsCarouselPaused(false)}
-              onTouchStart={() => setIsCarouselPaused(true)}
-              onTouchEnd={() => setIsCarouselPaused(false)}
-            >
+            <div className="relative">
               <button
                 onClick={() => scrollCarousel(-1)}
                 aria-label="Scroll left"

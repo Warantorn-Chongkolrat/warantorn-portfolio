@@ -17,6 +17,7 @@ import medilens1 from '../assets/projects/medilens/medilens-1.png';
 import medilens2 from '../assets/projects/medilens/medilens-2.png';
 import medilens3 from '../assets/projects/medilens/medilens-3.png';
 
+import catFeederTeam from '../assets/projects/cat-feeder/cat-feeder-team.jpg';
 import catFeeder1 from '../assets/projects/cat-feeder/cat-feeder-1.png';
 import catFeeder2 from '../assets/projects/cat-feeder/cat-feeder-2.jpg';
 import catFeeder3 from '../assets/projects/cat-feeder/cat-feeder-3.jpg';
@@ -192,7 +193,7 @@ const Projects = () => {
       title: 'I HAVE Feeder: Smart Cat Feeder',
       role: 'System Architect & Full-Stack Cloud Developer',
       description: 'An automated IoT ecosystem combining embedded microcontrollers, two-way cloud REST communication, interactive web dashboards, and Generative AI for pet portion recommendation.',
-      images: [catFeeder1, catFeeder2, catFeeder3, catFeeder4],
+      images: [catFeederTeam, catFeeder1, catFeeder2, catFeeder3, catFeeder4],
       technologies: ['HTML/CSS/JS', 'Google Apps Script', 'Google Sheets', 'Gemini API', 'ESP32', 'Embedded C++', 'Load Cell (HX711)', 'Ultrasonic Sensors', 'Arduino IDE'],
       links: [
         { label: 'More Info', url: 'https://drive.google.com/drive/folders/1a43cRkYmUOwfWe6T-gFzwizUzEY-vq_4?usp=sharing' },
