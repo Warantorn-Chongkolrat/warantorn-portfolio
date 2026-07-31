@@ -65,20 +65,20 @@ const CertificationCard = ({ certification, index }) => {
     <animated.div
       ref={ref}
       style={springProps}
-      className="group flex-shrink-0 w-64 snap-start bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-black/10 dark:border-white/10 hover:border-blue-500/30 transition-all duration-500"
+      className="flex-shrink-0 w-[calc(50%_-_0.75rem)] sm:w-[calc(33.333%_-_1rem)] lg:w-[calc(25%_-_1.125rem)] snap-start bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-black/10 dark:border-white/10"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-black/5 dark:bg-white/5">
         <img
           src={certification.image}
           alt={certification.title}
-          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain"
         />
       </div>
       <div className="p-4">
-        <h4 className="text-gray-900 dark:text-white font-medium">
+        <h4 className="text-gray-900 dark:text-white font-medium line-clamp-2">
           {certification.title}
         </h4>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1 line-clamp-1">
           {certification.issuer}
         </p>
       </div>
@@ -217,7 +217,10 @@ const Activities = () => {
 
   const scrollCarousel = (direction) => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: direction * 280, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: direction * carouselRef.current.clientWidth,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -423,7 +426,7 @@ const Activities = () => {
               </button>
               <div
                 ref={carouselRef}
-                className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide"
+                className="flex items-stretch gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory pb-2 scrollbar-hide"
               >
                 {certifications.map((certification, index) => (
                   <CertificationCard
